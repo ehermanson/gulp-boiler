@@ -1,3 +1,15 @@
+// Load plugins
+var gulp = require('gulp');
+var plugins = require('gulp-load-plugins')({ camelize: true });
+var sass = require('gulp-ruby-sass');
+var clean = require('gulp-clean');
+var newer = require('gulp-newer');
+var uglify = require('gulp-uglify');
+var livereload = require('gulp-livereload');
+var plumber = require('gulp-plumber');
+var autoprefixer = require('gulp-autoprefixer');
+var notify = require("gulp-notify");
+
 // Set variables for file paths to make it easy to change the project's file directory structure
 var basePaths = {
 	src: 'assets/',
@@ -28,19 +40,6 @@ var jsDest = paths.scripts.dest;
 var imgSrc = paths.images.src;
 var imgDest = paths.images.dest;
 
-// Load plugins
-var gulp = require('gulp'),
-	plugins = require('gulp-load-plugins')({ camelize: true }),
-	sass = require('gulp-ruby-sass'),
-	clean = require('gulp-clean'),
-	newer = require('gulp-newer'),
-	uglify = require('gulp-uglify'),
-	livereload = require('gulp-livereload'),
-	plumber = require('gulp-plumber'),
-	autoprefixer = require('gulp-autoprefixer'),
-	notify = require("gulp-notify");
-
-
 // Styles
 gulp.task('styles', function () {
 	return gulp.src(styleSrc + 'main.scss')
@@ -67,11 +66,10 @@ gulp.task('js', function () {
 		.pipe(plugins.jshint('.jshintrc'))
 		.pipe(plugins.jshint.reporter('default'))
 		.pipe(plugins.concat('global.js'))
-		.pipe(gulp.dest(jsSrc))
-		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(uglify())
-		.pipe(livereload(8888))
+		.pipe(plugins.rename({ suffix: '.min' }))
 		.pipe(gulp.dest(jsDest))
+		.pipe(livereload(8888))
 		.pipe(notify({ message: 'JS task complete' }));
 });
 

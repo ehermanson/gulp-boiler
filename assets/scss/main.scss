@@ -1,1 +1,7 @@
 // Main.scss should import whatever other scss files you have
+
+$main: red;
+
+body {
+	color:$main;
+}
