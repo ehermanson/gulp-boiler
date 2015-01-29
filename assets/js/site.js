@@ -1,1 +1,1 @@
-// Javascripts
+console.log('Site JS!');

@@ -1,7 +1,10 @@
 // Main.scss should import whatever other scss files you have
 
-$main: red;
+@import "normalize";
+
+$main: #555;
 
 body {
-	color:$main;
+	color: $main;
+	background: #ccc;
 }
