@@ -9,6 +9,8 @@ gulp.task('browser-sync', function() {
 	});
 });
 
+// If using MAMP or something
+
 // gulp.task('browser-sync', function() {
 // 	browserSync({
 // 		proxy: "site.dev"

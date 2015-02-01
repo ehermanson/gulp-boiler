@@ -1,18 +1,17 @@
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
-var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
-var size = require('gulp-size');
-var rename  = require('gulp-rename');
+var concat = require('gulp-concat');
 var uglify = require("gulp-uglify");
+var rename  = require('gulp-rename');
+var size = require('gulp-size');
 var notify = require("gulp-notify");
-var handleErrors = require('../utils/handleErrors');
 var config = require('../config').scripts;
 
 gulp.task('scripts', function () {
 	return gulp.src(config.src)
-		.pipe(plumber({errorHandler: notify.onError(handleErrors)}))
+		.pipe(plumber())
 		.pipe(sourcemaps.init())
 			.pipe(jshint('.jshintrc'))
 			.pipe(jshint.reporter('default'))
@@ -21,6 +20,6 @@ gulp.task('scripts', function () {
 			.pipe(rename({ suffix: '.min' }))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(config.dest))
-		.pipe(size())
-		.pipe(notify({ message: 'JS task complete' }));
+		.pipe(size({ showFiles: true, title: 'File Size:' }))
+		.pipe(notify({ title: 'Gulp Success!', message: 'Scripts task complete' }));
 });

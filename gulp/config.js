@@ -1,46 +1,31 @@
-var basePaths = {
-	src: 'assets/',
-	dest: 'assets/build/'
-};
-
 var paths = {
-	images: {
-		src: basePaths.src + 'images/*/**',
-		dest: basePaths.dest + 'images/'
-	},
-	scripts: {
-		src: basePaths.src + 'js/',
-		dest: basePaths.dest + 'js/'
-	},
-	styles: {
-		src: basePaths.src + 'scss/main.scss',
-		dest: basePaths.dest + 'css/'
-	}
+	src: 'src/',
+	dest: 'build/'
 };
 
+// This object may be referenced by gulp tasks when config.js is required
 module.exports = {
 
 	base: {
-		src: basePaths.src,
-		dest: basePaths.dest
+		src: paths.src,
+		dest: paths.dest
 	},
 
 	sass: {
-		src: paths.styles.src,
-		dest: paths.styles.dest
+		src: paths.src + 'scss/main.scss',
+		dest: paths.dest + 'css/'
 	},
 
 	scripts: {
 		src: [
-			paths.scripts.src + 'vendor/vendor.js',
-			paths.scripts.src + 'site.js'
+			paths.src + 'js/vendor/vendor.js',
+			paths.src + 'js/site.js'
 		],
-		dest: paths.scripts.dest
+		dest: paths.dest + 'js/'
 	},
 
 	images: {
-		src: paths.images.src,
-		dest: paths.images.dest
+		src: paths.src + 'images/**/*',
+		dest: paths.dest + 'images/'
 	}
-
 }
