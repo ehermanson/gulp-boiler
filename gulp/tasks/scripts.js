@@ -10,16 +10,16 @@ var notify = require("gulp-notify");
 var config = require('../config').scripts;
 
 gulp.task('scripts', function () {
-	return gulp.src(config.src)
-		.pipe(plumber())
-		.pipe(sourcemaps.init())
-			.pipe(jshint('.jshintrc'))
-			.pipe(jshint.reporter('default'))
-			.pipe(concat('global.js', {newLine: ';'}))
-			.pipe(uglify())
-			.pipe(rename({ suffix: '.min' }))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(config.dest))
-		.pipe(size({ showFiles: true, title: 'File Size:' }))
-		.pipe(notify({ title: 'Gulp Success!', message: 'Scripts task complete' }));
+  return gulp.src(config.src)
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+      .pipe(jshint('.jshintrc'))
+      .pipe(jshint.reporter('default'))
+      .pipe(concat('global.js', {newLine: ';'}))
+      .pipe(uglify())
+      .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(config.dest))
+    .pipe(size({ showFiles: true, title: 'File Size:' }))
+    .pipe(notify({ title: 'Gulp Success!', message: 'Scripts task complete' }));
 });
