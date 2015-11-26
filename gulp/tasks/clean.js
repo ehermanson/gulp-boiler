@@ -1,8 +1,7 @@
-var gulp = require("gulp");
-var clean = require("gulp-clean");
+var gulp = require('gulp');
+var del = require('del');
 var config = require('../config').base;
 
 gulp.task('clean', function () {
-  return gulp.src(config.dest, {read: false})
-    .pipe(clean());
+  return del(config.dest);
 });
